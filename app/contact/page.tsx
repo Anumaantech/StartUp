@@ -74,7 +74,7 @@ export default function ContactPage() {
                   <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
                 </svg>
                 <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                  <strong style={{ color: 'white' }}>We reply within 24 hours.</strong> For urgent queries, WhatsApp or call us directly.
+                  <strong style={{ color: 'var(--text-primary)' }}>We reply within 24 hours.</strong> For urgent queries, WhatsApp or call us directly.
                 </p>
               </div>
             </div>
@@ -182,7 +182,7 @@ export default function ContactPage() {
         }
         .contact-card__icon { font-size: 1.75rem; flex-shrink: 0; }
         .contact-card__title { font-weight: 700; font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
-        .contact-card__text { color: white; font-size: 0.938rem; }
+        .contact-card__text { color: var(--text-primary); font-size: 0.938rem; }
         .contact-social-btn {
           width: 40px; height: 40px;
           display: flex; align-items: center; justify-content: center;
@@ -204,7 +204,7 @@ export default function ContactPage() {
         .contact-form-wrapper { padding: 2.5rem; }
         .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         textarea.form-input { resize: vertical; }
-        select.form-input option { background: var(--navy-900); }
+        select.form-input option { background: var(--surface-dropdown); color: var(--text-primary); }
         .map-wrapper { overflow: hidden; }
         .map-placeholder {
           height: 350px;

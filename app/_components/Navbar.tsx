@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useTheme } from './ThemeProvider';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -28,11 +29,38 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+/* ── Sun icon ── */
+function SunIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  );
+}
+
+/* ── Moon icon ── */
+function MoonIcon() {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -72,7 +100,7 @@ export default function Navbar() {
             </div>
             <span className="navbar__logo-text">
               <span className="gradient-text-blue">Anumaan</span>
-              <span> Technologies</span>
+              <span className="navbar__logo-tech"> Technologies</span>
             </span>
           </Link>
 
@@ -89,7 +117,7 @@ export default function Navbar() {
                       aria-haspopup="true"
                     >
                       {link.label}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" 
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
                            style={{transform: activeDropdown === link.label ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s ease'}}>
                         <polyline points="6 9 12 15 18 9"/>
                       </svg>
@@ -113,8 +141,24 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* CTA + Hamburger */}
+          {/* CTA + Theme Toggle + Hamburger */}
           <div className="navbar__actions">
+            {/* Theme Toggle Button */}
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              id="theme-toggle-btn"
+              title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              suppressHydrationWarning
+            >
+              <span className="theme-toggle__track">
+                <span className="theme-toggle__thumb">
+                  {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+                </span>
+              </span>
+            </button>
+
             <Link href="/contact" className="btn-primary" id="navbar-cta-btn">
               <span>Get a Quote</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -127,7 +171,9 @@ export default function Navbar() {
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
             >
-              <span/><span/><span/>
+              <div className="navbar__hamburger-box">
+                <span/><span/><span/>
+              </div>
             </button>
           </div>
         </div>
@@ -136,6 +182,25 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div className={`mobile-menu${mobileOpen ? ' mobile-menu--open' : ''}`} role="dialog" aria-label="Mobile navigation">
         <div className="mobile-menu__content">
+          {/* Mobile theme toggle */}
+          <div className="mobile-menu__theme-row">
+            <span className="mobile-menu__theme-label">
+              {theme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+            </span>
+            <button
+              className="theme-toggle theme-toggle--mobile"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              id="mobile-theme-toggle-btn"
+            >
+              <span className="theme-toggle__track">
+                <span className="theme-toggle__thumb">
+                  {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+                </span>
+              </span>
+            </button>
+          </div>
+
           {navLinks.map((link) => (
             <div key={link.href} className="mobile-menu__section">
               <Link href={link.href} className="mobile-menu__link" onClick={() => setMobileOpen(false)}>
@@ -160,6 +225,7 @@ export default function Navbar() {
       {mobileOpen && <div className="mobile-menu__overlay" onClick={() => setMobileOpen(false)} />}
 
       <style>{`
+        /* ── Navbar base ── */
         .navbar {
           position: fixed;
           top: 0; left: 0; right: 0;
@@ -168,11 +234,11 @@ export default function Navbar() {
           transition: all 0.4s ease;
         }
         .navbar--scrolled {
-          background: rgba(5,13,24,0.95);
+          background: var(--surface-nav-scrolled);
           backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(255,255,255,0.06);
+          border-bottom: 1px solid var(--border-subtle);
           padding: 0.75rem 0;
-          box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+          box-shadow: var(--shadow-nav);
         }
         .navbar__inner {
           display: flex;
@@ -185,7 +251,7 @@ export default function Navbar() {
           align-items: center;
           gap: 0.75rem;
           text-decoration: none;
-          color: white;
+          color: var(--text-primary);
           font-family: var(--font-display);
           font-weight: 700;
           font-size: 1.1rem;
@@ -218,14 +284,17 @@ export default function Navbar() {
           font-family: var(--font-sans);
           white-space: nowrap;
         }
-        .navbar__link:hover, .navbar__link--dropdown:hover { color: white; background: rgba(255,255,255,0.06); }
+        .navbar__link:hover, .navbar__link--dropdown:hover {
+          color: var(--text-primary);
+          background: var(--surface-hover);
+        }
         .navbar__dropdown-wrapper { position: relative; }
         .navbar__dropdown {
           position: absolute;
           top: calc(100% + 0.75rem);
           left: 50%;
           transform: translateX(-50%);
-          background: rgba(8,18,35,0.97);
+          background: var(--surface-dropdown);
           backdrop-filter: blur(20px);
           border: 1px solid var(--border-subtle);
           border-radius: 1rem;
@@ -234,7 +303,7 @@ export default function Navbar() {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 0.25rem;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+          box-shadow: var(--shadow-card);
           animation: fade-in-up 0.2s ease;
           z-index: 100;
         }
@@ -250,14 +319,14 @@ export default function Navbar() {
           border-radius: 0.5rem;
           transition: all 0.2s ease;
         }
-        .navbar__dropdown-item:hover { color: var(--blue-bright); background: rgba(0,170,255,0.08); }
+        .navbar__dropdown-item:hover { color: var(--blue-bright); background: var(--surface-hover); }
         .navbar__dropdown-dot {
           width: 5px; height: 5px;
           border-radius: 50%;
           background: var(--blue-bright);
           flex-shrink: 0;
         }
-        .navbar__actions { display: flex; align-items: center; gap: 1rem; }
+        .navbar__actions { display: flex; align-items: center; gap: 0.75rem; }
         .navbar__hamburger {
           display: none;
           flex-direction: column;
@@ -271,19 +340,56 @@ export default function Navbar() {
           display: block;
           width: 22px;
           height: 2px;
-          background: white;
+          background: var(--text-primary);
           border-radius: 2px;
           transition: all 0.3s ease;
         }
         .navbar__hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .navbar__hamburger.open span:nth-child(2) { opacity: 0; }
         .navbar__hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+        }
+        .theme-toggle__track {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--surface-hover);
+          border: 1.5px solid var(--border-subtle);
+          transition: all 0.3s ease;
+          color: var(--text-secondary);
+        }
+        .theme-toggle:hover .theme-toggle__track {
+          background: var(--surface-input);
+          border-color: var(--border-glow);
+          color: var(--blue-bright);
+          box-shadow: 0 0 12px rgba(0,170,255,0.2);
+        }
+        .theme-toggle__thumb {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease;
+        }
+
+        /* ── Mobile Menu ── */
         .mobile-menu {
           position: fixed;
           top: 0; right: -100%;
           width: min(380px, 100vw);
           height: 100dvh;
-          background: rgba(5,13,24,0.98);
+          background: var(--surface-mobile-menu);
           backdrop-filter: blur(30px);
           border-left: 1px solid var(--border-subtle);
           z-index: 8500;
@@ -297,17 +403,36 @@ export default function Navbar() {
           flex-direction: column;
           gap: 0.25rem;
         }
+        .mobile-menu__theme-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.75rem 1rem;
+          margin-bottom: 0.5rem;
+          border-radius: 0.75rem;
+          background: var(--surface-hover);
+          border: 1px solid var(--border-subtle);
+        }
+        .mobile-menu__theme-label {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: var(--text-secondary);
+        }
+        .theme-toggle--mobile .theme-toggle__track {
+          width: 36px;
+          height: 36px;
+        }
         .mobile-menu__link {
           display: block;
           padding: 0.75rem 1rem;
-          color: white;
+          color: var(--text-primary);
           text-decoration: none;
           font-weight: 600;
           font-size: 1rem;
           border-radius: 0.75rem;
           transition: all 0.2s ease;
         }
-        .mobile-menu__link:hover { background: rgba(255,255,255,0.06); color: var(--blue-bright); }
+        .mobile-menu__link:hover { background: var(--surface-hover); color: var(--blue-bright); }
         .mobile-menu__sub { margin-left: 1rem; }
         .mobile-menu__sub-link {
           display: block;
@@ -322,14 +447,41 @@ export default function Navbar() {
         .mobile-menu__overlay {
           position: fixed;
           inset: 0;
-          background: rgba(0,0,0,0.6);
+          background: var(--surface-overlay);
           z-index: 8400;
           backdrop-filter: blur(4px);
         }
+
+        /* ── Responsive ── */
         @media (max-width: 1100px) {
+          .navbar__inner { gap: 0.5rem; }
           .navbar__links { display: none; }
           .navbar__hamburger { display: flex; }
-          .navbar__actions .btn-primary { padding: 0.625rem 1.25rem; font-size: 0.813rem; }
+          .navbar__actions .btn-primary {
+            padding: 0.625rem 1rem;
+            font-size: 0.813rem;
+            white-space: nowrap;
+          }
+          .navbar__actions .btn-primary svg { width: 14px; height: 14px; }
+        }
+
+        @media (max-width: 480px) {
+          .navbar__logo-tech { display: none; }
+          .navbar__actions { gap: 0.35rem; }
+          .navbar__actions .btn-primary {
+            padding: 0.5rem 0.875rem;
+            font-size: 0.75rem;
+          }
+          .navbar__actions .btn-primary svg { display: none; }
+          .navbar__logo-text { font-size: 1rem; }
+          .navbar__hamburger { padding: 0.25rem; }
+          .theme-toggle__track { width: 34px; height: 34px; }
+        }
+
+        .navbar__hamburger-box {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
         }
       `}</style>
     </>

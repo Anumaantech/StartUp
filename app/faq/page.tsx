@@ -92,7 +92,7 @@ export default function FAQPage() {
       </section>
 
       {/* CTA */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)', textAlign:'center'}}>
+      <section className="section" style={{background:'var(--surface-hover)', textAlign:'center'}}>
         <div className="container">
           <h2 className="section-heading">Still Have <span className="gradient-text">Questions?</span></h2>
           <p style={{color:'var(--text-secondary)', maxWidth:'450px', margin:'1rem auto 2rem'}}>Our team is happy to answer any questions. Get in touch and we&apos;ll respond within 24 hours.</p>

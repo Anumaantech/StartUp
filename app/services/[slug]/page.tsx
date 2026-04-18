@@ -313,7 +313,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <span>Book Free Consultation</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </Link>
-                <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" className="btn-outline" id="service-whatsapp-btn">
+                <a href="https://wa.me/917517459054" target="_blank" rel="noopener noreferrer" className="btn-outline" id="service-whatsapp-btn">
                   WhatsApp Us
                 </a>
               </div>

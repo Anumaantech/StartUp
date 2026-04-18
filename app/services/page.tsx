@@ -188,7 +188,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section" style={{textAlign:'center', background:'rgba(255,255,255,0.01)'}}>
+      <section className="section" style={{textAlign:'center', background:'var(--surface-hover)'}}>
         <div className="container">
           <div className="services-cta glass-card">
             <div className="bg-glow-1" style={{top:'50%', left:'50%', transform:'translate(-50%,-50%)', opacity:0.5}} />

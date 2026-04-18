@@ -127,7 +127,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)'}} aria-labelledby="values-heading">
+      <section className="section" style={{background:'var(--surface-hover)'}} aria-labelledby="values-heading">
         <div className="container">
           <div className="section__header text-center">
             <div className="section-label">Our DNA</div>
@@ -169,7 +169,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)'}} aria-labelledby="team-heading">
+      <section className="section" style={{background:'var(--surface-hover)'}} aria-labelledby="team-heading">
         <div className="container">
           <div className="section__header text-center">
             <div className="section-label">The Team</div>

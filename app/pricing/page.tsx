@@ -146,7 +146,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQs */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)'}}>
+      <section className="section" style={{background:'var(--surface-hover)'}}>
         <div className="container">
           <div style={{textAlign:'center', marginBottom:'3rem'}}>
             <div className="section-label" style={{display:'inline-flex'}}>FAQs</div>

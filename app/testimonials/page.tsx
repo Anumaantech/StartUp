@@ -38,7 +38,7 @@ export default function TestimonialsPage() {
       </section>
 
       {/* Stats Row */}
-      <section style={{padding:'2rem 0', borderBottom:'1px solid var(--border-subtle)', borderTop:'1px solid var(--border-subtle)', background:'rgba(255,255,255,0.02)'}}>
+      <section style={{padding:'2rem 0', borderBottom:'1px solid var(--border-subtle)', borderTop:'1px solid var(--border-subtle)', background:'var(--surface-hover)'}}>
         <div className="container">
           <div style={{display:'flex', justifyContent:'center', gap:'4rem', flexWrap:'wrap'}}>
             {[{val:'⭐ 4.9', label:'Average Rating'}, {val:'120+', label:'Happy Clients'}, {val:'98%', label:'On-time Delivery'}, {val:'100%', label:'NDA Compliance'}].map((s, i) => (
@@ -79,7 +79,7 @@ export default function TestimonialsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)', textAlign:'center'}}>
+      <section className="section" style={{background:'var(--surface-hover)', textAlign:'center'}}>
         <div className="container">
           <h2 className="section-heading">Ready to Be Our <span className="gradient-text">Next Success Story?</span></h2>
           <p style={{color:'var(--text-secondary)', maxWidth:'450px', margin:'1rem auto 2rem'}}>Join 120+ satisfied clients across India. Let&apos;s build something great together.</p>

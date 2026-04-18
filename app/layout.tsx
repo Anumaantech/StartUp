@@ -5,6 +5,7 @@ import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import FloatingButtons from "./_components/FloatingButtons";
 import CookieBanner from "./_components/CookieBanner";
+import { ThemeProvider } from "./_components/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -66,13 +67,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
+      <head>
+        {/* Prevent flash of wrong theme — runs before paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{var d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <FloatingButtons />
-        <CookieBanner />
+        <ThemeProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <FloatingButtons />
+          <CookieBanner />
+        </ThemeProvider>
       </body>
     </html>
   );

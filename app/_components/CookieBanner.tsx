@@ -51,7 +51,7 @@ export default function CookieBanner() {
           transition: all 0.2s ease;
           font-family: var(--font-sans);
         }
-        .cookie__decline-btn:hover { border-color: var(--text-secondary); color: white; }
+        .cookie__decline-btn:hover { border-color: var(--text-secondary); color: var(--text-primary); }
         @media (max-width: 640px) {
           .cookie-banner { flex-direction: column; align-items: flex-start; padding: 1rem; }
         }

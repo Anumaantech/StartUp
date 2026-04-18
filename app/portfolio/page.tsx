@@ -93,7 +93,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Start Project CTA */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)', textAlign:'center'}}>
+      <section className="section" style={{background:'var(--surface-hover)', textAlign:'center'}}>
         <div className="container">
           <div className="section-label" style={{display:'inline-flex'}}>Start Your Project</div>
           <h2 className="section-heading" style={{margin:'1rem 0'}}>Ready to Be Our <span className="gradient-text">Next Success Story?</span></h2>

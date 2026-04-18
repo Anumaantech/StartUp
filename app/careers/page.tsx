@@ -68,7 +68,7 @@ export default function CareersPage() {
       </section>
 
       {/* Job Listings */}
-      <section className="section" style={{background:'rgba(255,255,255,0.01)'}} aria-labelledby="jobs-heading">
+      <section className="section" style={{background:'var(--surface-hover)'}} aria-labelledby="jobs-heading">
         <div className="container">
           <div className="section__header text-center">
             <div className="section-label">Open Positions</div>
@@ -213,7 +213,7 @@ export default function CareersPage() {
           padding: 1.5rem; cursor: pointer;
           transition: background 0.2s ease;
         }
-        .job-card__header:hover { background: rgba(255,255,255,0.02); }
+        .job-card__header:hover { background: var(--surface-hover); }
         .job-card__info { flex: 1; }
         .job-card__title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.625rem; }
         .job-card__meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
@@ -244,9 +244,9 @@ export default function CareersPage() {
           font-size: 0.875rem; color: var(--text-secondary);
           transition: all 0.2s ease;
         }
-        .file-upload__label:hover { border-color: var(--border-glow); color: var(--blue-bright); background: rgba(0,170,255,0.04); }
+        .file-upload__label:hover { border-color: var(--border-glow); color: var(--blue-bright); background: var(--surface-input-focus); }
         textarea.form-input { resize: vertical; }
-        select.form-input option { background: var(--navy-900); }
+        select.form-input option { background: var(--surface-dropdown); color: var(--text-primary); }
         @media (max-width: 1024px) {
           .perks-grid { grid-template-columns: repeat(2, 1fr); }
           .apply-grid { grid-template-columns: 1fr; }

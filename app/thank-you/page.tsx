@@ -48,7 +48,7 @@ export default function ThankYouPage() {
                 Call Us
               </a>
               <a
-                href="https://wa.me/919999999999?text=Hi%20Anumaan%20Technologies%2C%20I%20sent%20an%20enquiry%20and%20need%20urgent%20help."
+                href="https://wa.me/917517459054?text=Hi%20Anumaan%20Technologies%2C%20I%20sent%20an%20enquiry%20and%20need%20urgent%20help."
                 className="thankyou-contact-btn thankyou-contact-btn--wa"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -131,7 +131,7 @@ export default function ThankYouPage() {
           gap: 0.5rem;
           padding: 0.75rem 1.5rem;
           border-radius: 50px;
-          background: rgba(255,255,255,0.05);
+          background: var(--surface-input);
           border: 1px solid var(--border-subtle);
           color: var(--text-secondary);
           text-decoration: none;

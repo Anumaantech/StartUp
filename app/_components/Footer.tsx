@@ -199,7 +199,7 @@ export default function Footer() {
         }
         .footer__logo {
           display: flex; align-items: center; gap: 0.75rem;
-          text-decoration: none; color: white;
+          text-decoration: none; color: var(--text-primary);
           font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
           margin-bottom: 1rem;
         }
@@ -243,7 +243,7 @@ export default function Footer() {
           display: flex; align-items: center; gap: 0.375rem;
         }
         .footer__link::before { content: '›'; color: var(--blue-bright); opacity: 0; transition: all 0.2s ease; }
-        .footer__link:hover { color: white; padding-left: 0.5rem; }
+        .footer__link:hover { color: var(--text-primary); padding-left: 0.5rem; }
         .footer__link:hover::before { opacity: 1; }
         .footer__contact-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
         .footer__contact-item {
@@ -263,7 +263,7 @@ export default function Footer() {
         }
         .footer__newsletter-form {
           display: flex;
-          background: rgba(255,255,255,0.04);
+          background: var(--surface-input);
           border: 1px solid var(--border-subtle);
           border-radius: 0.75rem;
           overflow: hidden;
@@ -276,7 +276,7 @@ export default function Footer() {
           background: transparent;
           border: none;
           outline: none;
-          color: white;
+          color: var(--text-primary);
           font-size: 0.875rem;
           font-family: var(--font-sans);
         }
